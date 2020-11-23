@@ -5,26 +5,56 @@ inquirer
   .prompt([
     {
       type: 'input',
-      message: 'What is your user name?',
-      name: 'username',
+      message: 'Title of Project?',
+      name: 'projectName',
     },
     {
-      type: 'password',
-      message: 'What is your password?',
-      name: 'password',
+      type: 'input',
+      message: 'About Prject?',
+      name: 'description',
     },
     {
-      type: 'password',
-      message: 'Re-enter password to confirm:',
-      name: 'confirm',
+      type: 'input',
+      message: 'How do you install this project?',
+      name: 'instructions',
     },
+    {
+      type: 'input',
+      message: 'What is the usage information?',
+      name: 'usageInformation',
+    },
+    {
+      type: 'input',
+      message: 'What are the guidelines for this project?',
+      name: 'guidelines',
+    },
+    {
+      type: 'input',
+      message: 'How do you report any issues?',
+      name: 'issues',
+    },
+    {
+      type: 'input',
+      message: 'What are the license you are using?',
+      name: 'license',
+    },
+    {
+      type: 'input',
+      message: 'What is your GitHub username?',
+      name: 'github',
+    },
+    {
+      type: 'input',
+      message: 'What is your Email?',
+      name: 'email',
+    },
+
+
   ])
   .then((response) => {
-  fs.appendFile('log.md', `## ${response.username}\n ${response.password}\n${response.confirm}`, (err) =>
-  // Ternary operator takes in a condition followed by a question mark (?)
-  // then an expression to execute if the condition is truthy followed by a colon (:)
-  // and finally the expression to execute if the condition is falsy.
-  // This operator is frequently used as a shortcut for the if statement.
+    const title = response.title.split(" ").join("-");
+    fs.appendFile('log.md', `## ${response.username}\n ${response.password}\n${response.confirm}`, (err) =>
+  
   err ? console.error(err) : console.log('Commit logged!')
 );
   });
