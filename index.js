@@ -1,60 +1,83 @@
+
 const inquirer = require('inquirer');
-const fs = require("fs")
+const fs = require('fs');
+const questions = [
+    {
+        type: 'input',
+        message: 'What is the title of your project?',
+        name: 'title'
+    },
+    {
+        type: 'input',
+        message: 'A description of your project.',
+        name: 'description'
+    },
+    {
+        type: 'input',
+        message: 'What is your GitHub username?',
+        name: 'github'
+    },
+    {
+        type: 'input',
+        message: 'What is your email address?',
+        name: 'email'
+    },
+    {
+        type: 'input',
+        message: 'Instructions for this project?',
+        name: 'installation'
+    },
+    {
+        type: 'input',
+        message: 'How do you use this project?',
+        name: 'usage'
+    },
+    {
+        type: 'checkbox',
+        message: 'What license is this project covered by?',
+        choices: ['Apache License 2.0', 'GNU General Public License 3.0', 'MIT License'],
+        name: 'license'
+    },
+];
+function writeToFile(fileName, data) {
+    fs.writeFile(`${fileName}.md`,
+        `# ${data.title}
+![](https://img.shields.io/badge/license-${data.license}-green?style=for-the-badge&logo=github)
+## Description
+${data.description}
 
-inquirer
-  .prompt([
-    {
-      type: 'input',
-      message: 'Title of Project?',
-      name: 'projectName',
-    },
-    {
-      type: 'input',
-      message: 'About Prject?',
-      name: 'description',
-    },
-    {
-      type: 'input',
-      message: 'How do you install this project?',
-      name: 'instructions',
-    },
-    {
-      type: 'input',
-      message: 'What is the usage information?',
-      name: 'usageInformation',
-    },
-    {
-      type: 'input',
-      message: 'What are the guidelines for this project?',
-      name: 'guidelines',
-    },
-    {
-      type: 'input',
-      message: 'How do you report any issues?',
-      name: 'issues',
-    },
-    {
-      type: 'input',
-      message: 'What are the license you are using?',
-      name: 'license',
-    },
-    {
-      type: 'input',
-      message: 'What is your GitHub username?',
-      name: 'github',
-    },
-    {
-      type: 'input',
-      message: 'What is your Email?',
-      name: 'email',
-    },
+## Table of Contents
 
+[Installation](#Installation)
 
-  ])
-  .then((response) => {
-    const title = response.title.split(" ").join("-");
-    fs.appendFile('log.md', `## ${response.username}\n ${response.password}\n${response.confirm}`, (err) =>
-  
-  err ? console.error(err) : console.log('Commit logged!')
-);
-  });
+[Usage](#Usage)
+
+[License](#License)
+
+[Contributing](#Contributing)
+
+[Questions](#Questions)
+
+## Installation
+${data.installation}
+## Usage
+${data.usage}
+
+## License
+This project is covered under the ${data.license}
+
+## Questions
+If you have any additional questions, contact me by email or GitHub.
+
+Email: ${data.email}
+
+GitHub: https://github.com/${data.github}`,
+        (err) => err ? console.error(err) : console.log("Thanks you for your information, your README has been generated!")
+    );
+}
+function init() {
+    inquirer.prompt(questions).then(answers => {
+        writeToFile(answers.title, answers);
+    });
+}
+init();

@@ -1,7 +1,7 @@
-# readme
+# ReadMe Generator
 ![](https://img.shields.io/badge/license-all-green?style=for-the-badge&logo=github)
 ## Description
-how to make a read me 
+how to make a readme 
 ## Table of Contents
 [Installation](#Installation)
 
@@ -22,5 +22,5 @@ undefined
 This project is covered under the all.
 ## Questions
 If you have any additional questions, contact me by email or GitHub.
-Email: yessicaperez@me.com
+Email: yessicperez@me.com
 GitHub: https://github.com/yessSamuels
