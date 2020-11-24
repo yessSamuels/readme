@@ -4,12 +4,12 @@ const fs = require('fs');
 const questions = [
     {
         type: 'input',
-        message: 'What is the title of your project?',
+        message: 'What do you want to call your project?',
         name: 'title'
     },
     {
         type: 'input',
-        message: 'A description of your project.',
+        message: 'Please description your project.',
         name: 'description'
     },
     {
@@ -24,17 +24,17 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Instructions for this project?',
+        message: 'What are the instructions for this project?',
         name: 'installation'
     },
     {
         type: 'input',
-        message: 'How do you use this project?',
+        message: 'How can you use this project?',
         name: 'usage'
     },
     {
         type: 'checkbox',
-        message: 'What license is this project covered by?',
+        message: 'Select the license you are covered by?',
         choices: ['Apache License 2.0', 'GNU General Public License 3.0', 'MIT License'],
         name: 'license'
     },
